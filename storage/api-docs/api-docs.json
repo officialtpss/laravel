@@ -1,0 +1,588 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Santabanta API",
+        "contact": {
+            "name": "Support Team",
+            "email": "demotpss@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/v1/{type}/categories/{cat_type}/{language}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "operationId": "/api/v1/{type}/categories/{cat_type}/{language}",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "The type parameter in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cat_type",
+                        "in": "path",
+                        "description": "The Category type parameter in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "The language parameter in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Type should be sms or jokes and cat_type should be rescricted,all,universal",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/categories/all/{language}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "operationId": "/api/v1/categories/all/{language}",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "The language parameter in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all categories by language",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/favourites/{device_id}": {
+            "get": {
+                "tags": [
+                    "Favourites"
+                ],
+                "operationId": "/api/v1/favourites/{device_id}",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "in": "path",
+                        "description": "The device id in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns favourites sms and jokes",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/favourites/save": {
+            "post": {
+                "tags": [
+                    "Favourites"
+                ],
+                "operationId": "/api/v1/favourites/save",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "device_id": {
+                                        "description": "Device id of user.",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "Favourite type like sms or jokes.",
+                                        "type": "string"
+                                    },
+                                    "item_id": {
+                                        "description": "This must be the id of sms or joke.",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Favourites added successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/favourites/delete/{favourite_id}": {
+            "delete": {
+                "tags": [
+                    "Favourites"
+                ],
+                "operationId": "/api/v1/favourites/delete/{favourite_id}",
+                "parameters": [
+                    {
+                        "name": "favourite_id",
+                        "in": "path",
+                        "description": "The device id in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Remove favourite sms or jokes",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/home/{lang}": {
+            "get": {
+                "tags": [
+                    "Home"
+                ],
+                "operationId": "/api/v1/home/{lang}",
+                "parameters": [
+                    {
+                        "name": "device_id",
+                        "in": "path",
+                        "description": "The language in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns sms, jokes and memes",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/jokes/latest/{language}": {
+            "get": {
+                "tags": [
+                    "Jokes"
+                ],
+                "operationId": "/api/v1/jokes/latest/{language}",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "The language of jokes in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns latest jokes",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/jokes/{joke_id}": {
+            "get": {
+                "tags": [
+                    "Jokes"
+                ],
+                "operationId": "/api/v1/jokes/{joke_id}",
+                "parameters": [
+                    {
+                        "name": "joke_id",
+                        "in": "path",
+                        "description": "The sms id in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns jokes by joke id",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/memes/latest/{language}": {
+            "get": {
+                "tags": [
+                    "Memes"
+                ],
+                "operationId": "/api/v1/memes/latest/{language}",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "The language parameter in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns latest sms by language",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/memes/{meme_id}": {
+            "get": {
+                "tags": [
+                    "Memes"
+                ],
+                "operationId": "/api/v1/memes/{meme_id}",
+                "parameters": [
+                    {
+                        "name": "meme_id",
+                        "in": "path",
+                        "description": "The memes id in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns memes by joke id",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/newmemes/{permalink}": {
+            "get": {
+                "tags": [
+                    "Memes"
+                ],
+                "operationId": "/api/v1/newmemes/{permalink}",
+                "parameters": [
+                    {
+                        "name": "permalink",
+                        "in": "path",
+                        "description": "The parent category slug parameter in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns sms by permalink",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/menus/{language}": {
+            "get": {
+                "tags": [
+                    "Menus"
+                ],
+                "operationId": "/api/v1/menus/{language}",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "The language of main menu in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns Header Menus",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/sidebarmenus/{language}": {
+            "get": {
+                "tags": [
+                    "Menus"
+                ],
+                "operationId": "/api/v1/sidebarmenus/{language}",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "The language of sidebar in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns Sms Sidebar Menus in english and Hindi",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/jokes/sidebarmenus/{language}": {
+            "get": {
+                "tags": [
+                    "Menus"
+                ],
+                "operationId": "/api/v1/jokes/sidebarmenus/{language}",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "The language of sidebar in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns Sidebar Jokes Menus in english and hindi",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/sms/latest/{language}": {
+            "get": {
+                "tags": [
+                    "Sms"
+                ],
+                "operationId": "/api/v1/sms/latest/{language}",
+                "parameters": [
+                    {
+                        "name": "language",
+                        "in": "path",
+                        "description": "The language parameter in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns latest sms by language",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/sms/{sms_id}": {
+            "get": {
+                "tags": [
+                    "Sms"
+                ],
+                "operationId": "/api/v1/sms/{sms_id}",
+                "parameters": [
+                    {
+                        "name": "sms_id",
+                        "in": "path",
+                        "description": "The sms id in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns sms by sms id",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        },
+        "/api/v1/newsms/{permalink}": {
+            "get": {
+                "tags": [
+                    "Sms"
+                ],
+                "operationId": "/api/v1/newsms/{permalink}",
+                "parameters": [
+                    {
+                        "name": "permalink",
+                        "in": "path",
+                        "description": "The parent category slug parameter in path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns sms by permalink",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error: Bad request. When required parameters were not supplied."
+                    }
+                }
+            }
+        }
+    }
+}
